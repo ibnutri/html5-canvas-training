@@ -22,10 +22,12 @@
       if (!canvasSupport) {
         return;
       }
-      var theCanvas = document.getElementById("canvasOne");
       drawScreen();
       function drawScreen(){
-        
+        var theCanvas = document.getElementById("canvasOne");
+        var context = theCanvas.getContext("2d");
+        context.fillStyle = "#ffffaa";
+        context.fillRect(0,0,500,300);
       }
       
     }
