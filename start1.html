@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>HTML5 Canvas training chapter 1</title>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
   </head>
   <body>
     <div style="position: absolute; top: 50px; left: 50px;">
@@ -11,5 +12,26 @@
     <canvas id="canvasOne" width="500" height="300">
      Your browser does not support HTML5 Canvas.
     </canvas>
+    <script type="text/javascript">
+    window.addEventListener("load", eventWindowLoaded, false);
+    function eventWindowLoaded () {
+      canvasApp();
+      
+    }
+    function canvasApp(){
+      if (!canvasSupport) {
+        return;
+      }
+      var theCanvas = document.getElementById("canvasOne");
+      drawScreen();
+      function drawScreen(){
+        
+      }
+      
+    }
+    function canvasSupport () {
+      return Modernizr.canvas;
+    }
+    </script>
   </body>
 </html>
