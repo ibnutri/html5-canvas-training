@@ -11,92 +11,103 @@
      Your browser does not support HTML5 Canvas.
     </canvas>
     <script type="text/javascript">
-    window.addEventListener("load", eventWindowLoaded, false);
-    function eventWindowLoaded () {
-      canvasApp();
-      
-    }
-    function canvasApp(){
-      var theCanvas = document.getElementById("canvasOne");
-        var context = theCanvas.getContext("2d");
+      window.addEventListener("load", eventWindowLoaded, false);
 
+      function eventWindowLoaded() {
+          canvasApp();
+
+      }
+
+      function canvasApp() {
+          var theCanvas = document.getElementById("canvasOne");
+          var context = theCanvas.getContext("2d");
+          var formElement = document.getElementById("createImageData");
+          formElement.addEventListener('click', createImageDataPressed, false);
           function drawScreen() {
-            //background
-            context.globalAlpha = 1;
-            context.fillStyle = "#000000";
+              //background
+              context.globalAlpha = 1;
+              context.fillStyle = "#000000";
               context.fillRect(0, 0, 640, 480);
-            //image
-            context.globalAlpha = .25;
-            context.drawImage(helloWorldImage, 0, 0);
+              //image
+              context.globalAlpha = .25;
+              context.drawImage(helloWorldImage, 0, 0);
 
-            // fade in/out switching
-            if (fadeIn) {
-                alpha += .01;
-                if (alpha >= 1)  {
-                    alpha = 1;
-                    fadeIn = false;
-                }
-            } else {
-                alpha -= .01;
-                if (alpha < 0)  {
-                    alpha = 0;
-                    fadeIn = true;
-                }
-            }
-            // geser kiri/kanan
-            if(toLeft){
-              xPos -= 1;
-              if(xPos < 100){
-                xPos = 100;
-                toLeft = false;
+              // fade in/out switching
+              if (fadeIn) {
+                  alpha += .01;
+                  if (alpha >= 1) {
+                      alpha = 1;
+                      fadeIn = false;
+                  }
+              } else {
+                  alpha -= .01;
+                  if (alpha < 0) {
+                      alpha = 0;
+                      fadeIn = true;
+                  }
               }
-            }else{
-              xPos += 1;
-              if(xPos > 200){
-                xPos = 200;
-                toLeft = true;
+              // geser kiri/kanan
+              if (toLeft) {
+                  xPos -= 1;
+                  if (xPos < 100) {
+                      xPos = 100;
+                      toLeft = false;
+                  }
+              } else {
+                  xPos += 1;
+                  if (xPos > 200) {
+                      xPos = 200;
+                      toLeft = true;
+                  }
               }
-            }
-            //text
-            context.font         = "72px Sans-Serif";
-            context.textBaseline = "top";
+              //text
+              context.font = "72px Sans-Serif";
+              context.textBaseline = "top";
 
 
-            context.globalAlpha = alpha;
-            context.fillStyle    = "#FFFFFF";
-            context.fillText  (text, xPos,200);
-//             context.drawImage(helloWorldImage, 0, 0);
+              context.globalAlpha = alpha;
+              context.fillStyle = "#FFFFFF";
+              context.fillText(text, xPos, 200);
+              //             context.drawImage(helloWorldImage, 0, 0);
 
-        }
 
-        var text = "Hello World";
-        var alpha = 0;
-        var fadeIn = true;
-        var xPos=150;
-        var toLeft = true;
-        //image
-        var helloWorldImage = new Image();
-        helloWorldImage.src = "images/html5bg.jpg";
+          }
 
-        function gameLoop() {
-            window.setTimeout(gameLoop, 20);
-            drawScreen()
-        }
+          var text = "Hello World";
+          var alpha = 0;
+          var fadeIn = true;
+          var xPos = 150;
+          var toLeft = true;
+          //image
+          var helloWorldImage = new Image();
+          helloWorldImage.src = "images/html5bg.jpg";
 
-        gameLoop();
-      
-    }
-    function canvasSupport () {
-      return Modernizr.canvas;
-    }
-    var Debugger = function () { };
-    Debugger.log = function (message) {
-       try {
-          console.log(message);
-       } catch (exception) {
-          return;
-       }
-    }
+          function gameLoop() {
+              window.setTimeout(gameLoop, 20);
+              drawScreen()
+          }
+          function createImageDataPressed(e) {
+            window.open(theCanvas.toDataURL(),"canvasImage","left=0,top=0,width=" +
+            theCanvas.width + ",height=" + theCanvas.height +",toolbar=0,resizable=0");
+          }
+          gameLoop();
+
+      }
+
+      function canvasSupport() {
+          return Modernizr.canvas;
+      }
+      var Debugger = function() {};
+      Debugger.log = function(message) {
+          try {
+              console.log(message);
+          } catch (exception) {
+              return;
+          }
+      }
     </script>
+    <form>
+      <input type="button" id="createImageData" value="Export Canvas Image">
+    </form>
   </body>
 </html>
