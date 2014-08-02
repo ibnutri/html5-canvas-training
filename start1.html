@@ -17,37 +17,57 @@
       
     }
     function canvasApp(){
-      if (!canvasSupport) {
-        return;
-      }
-      drawScreen();
-      function drawScreen(){
-        var theCanvas = document.getElementById("canvasOne");
+      var theCanvas = document.getElementById("canvasOne");
         var context = theCanvas.getContext("2d");
-        // create background
-        context.fillStyle = "#ffffaa"; // fill style, untuk bikin apapun butuh ini keknya
-        context.fillRect(0,0,500,300); // bikin kotak, sesuai dengan fillStyle
-        
-        // create text
-        context.fillStyle = "#000000"; 
-        context.font = "20px Sans-Serif"; // nentuin huruf
-        context.textBaseline = "top"; 
-        context.fillText('Hello World!', 195, 80); // bikin hurufnya
-        
-        //create image
-        var helloWorldImage = new Image();
-        helloWorldImage.onload = function () {
-          context.drawImage(helloWorldImage, 155, 110);
-        }
-        helloWorldImage.src = "images/helloworld.gif";
 
-        //box
-        context.strokeStyle = "#000000";
-        context.strokeRect(5,  5, 490, 290); // bikin kotak yang garis aja, sesuai strokeStyle
-        
-        Debugger.log('drawscreen'); // test debug
-          
-      }
+          function drawScreen() {
+            //background
+            context.globalAlpha = 1;
+            context.fillStyle = "#000000";
+              context.fillRect(0, 0, 640, 480);
+            //image
+            context.globalAlpha = .25;
+            context.drawImage(helloWorldImage, 0, 0);
+
+
+            if (fadeIn) {
+                alpha += .01;
+                if (alpha >= 1)  {
+                    alpha = 1;
+                    fadeIn = false;
+                }
+            } else {
+                alpha -= .01;
+                if (alpha < 0)  {
+                    alpha = 0;
+                    fadeIn = true;
+                }
+            }
+
+            //text
+            context.font         = "72px Sans-Serif";
+            context.textBaseline = "top";
+
+
+            context.globalAlpha = alpha;
+            context.fillStyle    = "#FFFFFF";
+            context.fillText  (text, 150,200);
+
+        }
+
+        var text = "Hello World";
+        var alpha = 0;
+        var fadeIn = true;
+        //image
+        var helloWorldImage = new Image();
+        helloWorldImage.src = "images/html5bg.jpg";
+
+        function gameLoop() {
+            window.setTimeout(gameLoop, 20);
+            drawScreen()
+        }
+
+        gameLoop();
       
     }
     function canvasSupport () {
