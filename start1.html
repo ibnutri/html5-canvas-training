@@ -6,9 +6,7 @@
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
   </head>
   <body>
-    <div style="position: absolute; top: 50px; left: 50px;">
-      Hello World!
-    </div>
+
     <canvas id="canvasOne" width="500" height="300">
      Your browser does not support HTML5 Canvas.
     </canvas>
@@ -34,7 +32,19 @@
         context.fillStyle = "#000000";
         context.font = "20px Sans-Serif";
         context.textBaseline = "top";
-        context.fillText('Halo ', 195, 80);
+        context.fillText('Hello World!', 195, 80);
+        
+         //create image
+         var helloWorldImage = new Image();
+         helloWorldImage.onload = function () {
+            context.drawImage(helloWorldImage, 155, 110);
+         }
+         helloWorldImage.src = "images/helloworld.gif";
+
+         //box
+         context.strokeStyle = "#000000";
+         context.strokeRect(5,  5, 490, 290);
+        
       }
       
     }
