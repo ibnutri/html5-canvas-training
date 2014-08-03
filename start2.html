@@ -82,7 +82,14 @@ if (!canvasSupport()) {
       context.lineTo(35,195);
       context.stroke();
       context.closePath();
-
+      
+      // create arc
+     context.beginPath();
+      context.strokeStyle = "black";
+      context.lineWidth = 5;
+      context.arc(100, 100, 20, (Math.PI/180)*0, (Math.PI/180)*270, false);
+      context.stroke();
+      context.closePath();
 
    }
 }
