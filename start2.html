@@ -34,13 +34,17 @@ if (!canvasSupport()) {
       context.fillStyle  = '#000000';
       context.font = '20px _sans';
       context.textBaseline = 'top';
-     
-      context.fillStyle  = '#000000';
       context.strokeStyle = '#ff00ff';
       context.lineWidth  = 2;
-      context.fillRect(10,10,40,40); // bikin kotak
       context.strokeRect(0, 0,60,60); // garis kotak
-      context.clearRect(20,20,20,20); // bikin hollow di kotak
+      context.fillStyle = "#000000";
+      context.fillRect(0,0,60,60);
+      context.fillStyle  = '#ffffff';
+      context.fillRect(10,10,40,40); // bikin kotak
+      context.fillStyle = "#000000";
+      context.fillRect(20,20,20,20);
+      
+      
 
 
    }
