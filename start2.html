@@ -27,7 +27,7 @@ if (!canvasSupport()) {
 
    drawScreen();
 
-   function drawScreen() {
+  function drawScreen() {
       //make changes here.
       context.fillStyle = '#aaaaaa';
       context.fillRect(0, 0, 200, 200);
@@ -44,7 +44,15 @@ if (!canvasSupport()) {
       context.fillStyle = "#000000";
       context.fillRect(20,20,20,20);
       
-      
+     // gambar garis
+      context.strokeStyle  = "black";
+       context.lineWidth  = 10;
+       context.lineCap  = 'square';
+       context.beginPath(); // mulai
+       context.moveTo(80, 0); // pindahin cursor
+       context.lineTo(160, 0); // dari cursor bikin garis ke
+       context.stroke(); // tulis
+       context.closePath(); //close
 
 
    }
