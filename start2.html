@@ -47,12 +47,41 @@ if (!canvasSupport()) {
      // gambar garis
       context.strokeStyle  = "black";
        context.lineWidth  = 10;
-       context.lineCap  = 'square';
+       context.lineCap  = 'round';
        context.beginPath(); // mulai
        context.moveTo(80, 0); // pindahin cursor
-       context.lineTo(160, 0); // dari cursor bikin garis ke
+       context.lineTo(160, 40); // dari cursor bikin garis ke
        context.stroke(); // tulis
        context.closePath(); //close
+    
+      context.strokeStyle  = "black";
+      context.lineWidth  = 10;
+      context.lineJoin  = 'bevel';
+      context.lineCap  = 'round';
+      context.beginPath();
+      context.moveTo(10, 70);
+      context.lineTo(35, 70);
+      context.lineTo(35,95);
+      context.stroke();
+      context.closePath();
+
+      // Sample 2: round end, bevel join, not at top or left of canvas
+      context.beginPath();
+      context.moveTo(10, 120);
+      context.lineTo(35, 120);
+      context.lineTo(35,145);
+      context.stroke();
+      context.closePath();
+
+      // Sample 3: flat end, round join, not at top or left of canvas
+      context.lineJoin  = 'round';
+      context.lineCap = 'butt';
+      context.beginPath();
+      context.moveTo(10, 170);
+      context.lineTo(35, 170);
+      context.lineTo(35,195);
+      context.stroke();
+      context.closePath();
 
 
    }
