@@ -25,6 +25,7 @@ function canvasApp(){
       var context = theCanvas.getContext("2d");
    }
    var sudut = 0;
+   var openLingkaran = true;
    gameLoop();
 
   function drawScreen() {
@@ -83,12 +84,27 @@ function canvasApp(){
       context.lineTo(35,195);
       context.stroke();
       context.closePath();
-      sudut = sudut+1;
+      
       // create arc
       context.beginPath();
       context.strokeStyle = "black";
       context.lineWidth = 5;
-      context.arc(100, 100, 20, (Math.PI/180)*0, (Math.PI/180)*sudut, false);
+      if(openLingkaran == true){
+        sudut = sudut+1; 
+        context.arc(100, 100, 20, (Math.PI/180)*0, (Math.PI/180)*sudut, false);
+        if(sudut >= 360){
+           sudut = 0;
+           openLingkaran = false;
+        }
+      }else{
+        sudut = sudut+1; 
+        context.arc(100, 100, 20, (Math.PI/180)*sudut, (Math.PI/180)*360,false);
+        if(sudut >= 360){
+           sudut = 0;
+           openLingkaran = true;
+        }
+      } 
+      
       context.stroke();
       context.closePath();
       // create bezier curve
@@ -100,6 +116,7 @@ function canvasApp(){
       context.stroke();
       context.closePath();
    }
+  
   function gameLoop() {
       window.setTimeout(gameLoop, 20);
       drawScreen()
