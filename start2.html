@@ -24,8 +24,8 @@ function canvasApp(){
       var theCanvas = document.getElementById("canvas");
       var context = theCanvas.getContext("2d");
    }
-
-   drawScreen();
+   var sudut = 0;
+   gameLoop();
 
   function drawScreen() {
       //make changes here.
@@ -83,12 +83,12 @@ function canvasApp(){
       context.lineTo(35,195);
       context.stroke();
       context.closePath();
-      
+      sudut = sudut+1;
       // create arc
       context.beginPath();
       context.strokeStyle = "black";
       context.lineWidth = 5;
-      context.arc(100, 100, 20, (Math.PI/180)*0, (Math.PI/180)*270, false);
+      context.arc(100, 100, 20, (Math.PI/180)*0, (Math.PI/180)*sudut, false);
       context.stroke();
       context.closePath();
       // create bezier curve
@@ -100,6 +100,10 @@ function canvasApp(){
       context.stroke();
       context.closePath();
    }
+  function gameLoop() {
+      window.setTimeout(gameLoop, 20);
+      drawScreen()
+  }
 }
 
 </script>
